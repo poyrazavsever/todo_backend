@@ -1,23 +1,47 @@
-import { Controller, Get, Post, Put } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Body,
+  Param,
+  Patch,
+} from '@nestjs/common';
+import { TodosService } from './todos.service';
+import { User } from './schemas/todo.schema';
 
 @Controller('todo')
 export class TodosController {
+  constructor(private readonly todosService: TodosService) {}
+
   @Get()
-  findAll() {
-    return 'Todolar burada gelecek';
+  findAll(): Promise<User[]> {
+    return this.todosService.findAll();
   }
 
   @Post()
-  create() {
-    return 'Todo eklendi';
+  create(@Body() todo: any): Promise<User> {
+    return this.todosService.create(todo);
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string): Promise<User> {
+    return this.todosService.findOne(id);
   }
 
   @Put(':id')
-  update() {
-    return 'Todo güncellendi';
+  update(@Param('id') id: string, @Body() todo: any): Promise<User> {
+    return this.todosService.update(id, todo);
   }
-  @Get(':id')
-  findOne() {
-    return 'Todo detayları burada gelecek';
+
+  @Delete(':id')
+  remove(@Param('id') id: string): Promise<User> {
+    return this.todosService.delete(id);
+  }
+
+  @Patch(':id/toggle')
+  toggleComplete(@Param('id') id: string): Promise<User> {
+    return this.todosService.toggleComplete(id);
   }
 }
