@@ -1,16 +1,16 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-export type UserDocument = User & Document;
+export type TodoDocument = Todo & Document;
 
 @Schema()
-export class User {
+export class Todo {
   _id: Types.ObjectId;
 
   @Prop({ required: true })
   userId: Types.ObjectId;
 
-  @Prop({ required: true, unique: true })
+  @Prop({ required: true })
   title: string;
 
   @Prop({ required: true })
@@ -26,4 +26,4 @@ export class User {
   createdAt: Date;
 }
 
-export const UserSchema = SchemaFactory.createForClass(User);
+export const TodoSchema = SchemaFactory.createForClass(Todo);
