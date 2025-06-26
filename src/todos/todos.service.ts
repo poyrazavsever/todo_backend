@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Todo, TodoDocument } from './schemas/todo.schema';
+import { CreateTodoDto } from './dto/todo.input';
 
 @Injectable()
 export class TodosService {
@@ -13,7 +14,7 @@ export class TodosService {
     return this.todoModel.find().exec();
   }
 
-  async create(todo: any): Promise<Todo> {
+  async create(todo: CreateTodoDto): Promise<Todo> {
     const createdTodo = new this.todoModel(todo);
     return createdTodo.save();
   }

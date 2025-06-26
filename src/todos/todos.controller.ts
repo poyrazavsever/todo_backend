@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { TodosService } from './todos.service';
 import { Todo } from './schemas/todo.schema';
+import { CreateTodoDto } from './dto/todo.input';
 
 @Controller('todo')
 export class TodosController {
@@ -21,12 +22,12 @@ export class TodosController {
   }
 
   @Post()
-  create(@Body() todo: any): Promise<Todo> {
+  create(@Body() todo: CreateTodoDto): Promise<CreateTodoDto> {
     return this.todosService.create(todo);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string): Promise<Todo> {
+  findOne(@Param('id') id: string): Promise<CreateTodoDto> {
     return this.todosService.findOne(id);
   }
 
@@ -41,7 +42,7 @@ export class TodosController {
   }
 
   @Patch(':id')
-  toggleComplete(@Param('id') id: string): Promise<Todo> {
+  toggleComplete(@Param('id') id: string): Promise<CreateTodoDto> {
     return this.todosService.toggleComplete(id);
   }
 }
