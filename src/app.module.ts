@@ -20,6 +20,12 @@ import { Connection, ConnectionStates } from 'mongoose';
           if (connection.readyState === ConnectionStates.connected) {
             console.log('MongoDB connection established successfully');
           }
+          connection.on('connected', () => {
+            console.log('MongoDB connection established successfully');
+          });
+          connection.on('error', (err) => {
+            console.error('MongoDB connection error:', err);
+          });
           return connection;
         },
       }),
