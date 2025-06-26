@@ -5,6 +5,8 @@ import { User, UserDocument } from './schemas/user.schema';
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 import { ConfigService } from '@nestjs/config';
+import { CreateRegisterInput } from './dto/register.input';
+import { CreateLoginInput } from './dto/login.input';
 
 @Injectable()
 export class AuthService {
@@ -13,17 +15,19 @@ export class AuthService {
     private configService: ConfigService,
   ) {}
 
-  async register(email: string, password: string, name: string) {
-    const existingUser = await this.userModel.findOne({ email });
+  async register(createRegisterInput: CreateRegisterInput) {
+    const existingUser = await this.userModel.findOne({
+      email: createRegisterInput.email,
+    });
     if (existingUser) {
-      throw new UnauthorizedException('User already exists');
+      throw new UnauthorizedException('Bu e-posta adresi zaten kayıtlı');
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(createRegisterInput.password, 10);
     const user = new this.userModel({
-      email,
+      email: createRegisterInput.email,
       password: hashedPassword,
-      name,
+      name: createRegisterInput.name,
     });
 
     await user.save();
@@ -38,15 +42,20 @@ export class AuthService {
     };
   }
 
-  async login(email: string, password: string) {
-    const user = await this.userModel.findOne({ email });
+  async login(createLoginInput: CreateLoginInput) {
+    const user = await this.userModel.findOne({
+      email: createLoginInput.email,
+    });
     if (!user) {
-      throw new UnauthorizedException('Invalid credentials');
+      throw new UnauthorizedException('Kullanıcı bulunamadı');
     }
 
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await bcrypt.compare(
+      createLoginInput.password,
+      user.password,
+    );
     if (!isPasswordValid) {
-      throw new UnauthorizedException('Invalid credentials');
+      throw new UnauthorizedException('Geçersiz şifre, lütfen tekrar deneyin');
     }
 
     const token = this.generateToken(user._id.toString());
