@@ -1,31 +1,50 @@
+# NestJS Todo Uygulaması - Öğrenme Projesi
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## 📚 Proje Hakkında
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Bu proje, NestJS framework'ünü öğrenme sürecimin bir parçası olarak geliştirdiğim bir Todo (Yapılacaklar Listesi) uygulamasıdır. Modern backend geliştirme pratiklerini ve NestJS'in temel kavramlarını uygulamalı olarak öğrenmek amacıyla oluşturulmuştur.
 
-## Description
+## 🎯 Öğrenme Hedefleri
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- [x] NestJS proje yapısını anlama
+- [x] Controller ve Service katmanlarının implementasyonu
+- [x] MongoDB ve Mongoose entegrasyonu
+- [x] DTO (Data Transfer Object) kullanımı
+- [x] Input validasyonu ve error handling
+- [x] REST API tasarım prensipleri
+- [ ] Authentication ve Authorization
+- [ ] Unit ve E2E testlerin yazılması
 
-## Project setup
+## 🛠️ Teknolojiler ve Araçlar
+
+- NestJS - Modern Node.js framework'ü
+- TypeScript - Tip güvenli programlama dili
+- MongoDB - NoSQL veritabanı
+- Mongoose - MongoDB ODM (Object Document Mapping)
+- class-validator - Input validasyonu için
+- class-transformer - Nesne dönüşümleri için
+
+## 📋 Özellikler
+
+### Todo İşlemleri
+- ✅ Todo oluşturma
+- ✅ Todoları listeleme
+- ✅ Todo detayı görüntüleme
+- ✅ Todo güncelleme
+- ✅ Todo silme
+- ✅ Todo durumu değiştirme
+
+### Validasyonlar
+- ✅ Başlık minimum 6 karakter
+- ✅ İçerik 16-256 karakter arası
+- ✅ Kategori zorunlu alan
+- ✅ MongoDB ID doğrulama
+
+## 🚀 Kurulum ve Çalıştırma
 
 ```bash
 $ pnpm install
@@ -44,55 +63,39 @@ $ pnpm run start:dev
 $ pnpm run start:prod
 ```
 
-## Run tests
+## 📖 API Dokümantasyonu
 
-```bash
-# unit tests
-$ pnpm run test
+### Endpoints
 
-# e2e tests
-$ pnpm run test:e2e
+| Method | Endpoint | Açıklama |
+|--------|----------|-----------|
+| GET    | /todo    | Tüm todoları listeler |
+| POST   | /todo    | Yeni todo oluşturur |
+| GET    | /todo/:id| Belirli bir todoyu getirir |
+| PUT    | /todo/:id| Bir todoyu günceller |
+| DELETE | /todo/:id| Bir todoyu siler |
+| PATCH  | /todo/:id| Todo durumunu değiştirir |
 
-# test coverage
-$ pnpm run test:cov
+### Örnek İstekler
+
+#### Todo Oluşturma
+```json
+POST /todo
+{
+  "userId": "64a123b567890123b5678901",
+  "title": "NestJS Çalış",
+  "content": "NestJS dökümantasyonunu oku ve örnekleri incele",
+  "category": "eğitim"
+}
 ```
 
-## Deployment
+## 📝 Not
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+Bu proje öğrenme amaçlı olduğu için, her türlü geri bildirim ve öneriye açıktır. Issues bölümünden önerilerinizi iletebilir veya pull request gönderebilirsiniz.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+## 📚 Faydalı Kaynaklar
 
-```bash
-$ pnpm install -g @nestjs/mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+- [NestJS Resmi Dokümantasyon](https://docs.nestjs.com)
+- [MongoDB Dokümantasyon](https://docs.mongodb.com)
+- [TypeScript Dokümantasyon](https://www.typescriptlang.org/docs)
+- [Mongoose Dokümantasyon](https://mongoosejs.com/docs/guide.html)
